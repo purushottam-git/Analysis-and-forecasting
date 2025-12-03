@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { name: 'Dashboard', path: '/', icon: 'fa-chart-pie' },
@@ -11,6 +11,8 @@ const navItems = [
 ];
 
 const Sidebar: React.FC = () => {
+  const location = useLocation();
+
   return (
     <aside className="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col h-screen sticky top-0">
       <div className="p-6 border-b border-slate-700">
@@ -24,19 +26,17 @@ const Sidebar: React.FC = () => {
         <ul>
           {navItems.map((item) => (
             <li key={item.path}>
-              <NavLink
+              <Link
                 to={item.path}
-                className={({ isActive }) =>
-                  `flex items-center px-6 py-3 text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-indigo-600 text-white border-r-4 border-indigo-300'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                  }`
-                }
+                className={`flex items-center px-6 py-3 text-sm font-medium transition-colors ${
+                  location.pathname === item.path
+                    ? 'bg-indigo-600 text-white border-r-4 border-indigo-300'
+                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                }`}
               >
                 <i className={`fa-solid ${item.icon} w-6`}></i>
                 {item.name}
-              </NavLink>
+              </Link>
             </li>
           ))}
         </ul>

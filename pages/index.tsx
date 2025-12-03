@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { useData } from '../App';
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar } from 'recharts';
+import { useData } from '../context/DataContext';
+import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { Link } from 'react-router-dom';
 
 const StatCard = ({ title, value, sub, icon, color }: any) => (
@@ -27,7 +27,6 @@ const Dashboard: React.FC = () => {
     const totalQty = transactions.reduce((sum, t) => sum + Number(t.quantity), 0);
     const avgOrder = totalRev / transactions.length;
 
-    // Simple YoY/MoM sim
     const growth = "+12.5% vs last period";
 
     return {
@@ -40,7 +39,7 @@ const Dashboard: React.FC = () => {
 
   if (transactions.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-[80vh] text-center">
+      <div className="flex flex-col items-center justify-center h-[70vh] text-center animate-fade-in">
         <div className="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-500 mb-6">
           <i className="fa-solid fa-cloud-arrow-up text-3xl"></i>
         </div>
@@ -61,7 +60,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in">
       <div className="flex justify-between items-end">
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Dashboard</h2>
