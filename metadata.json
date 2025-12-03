@@ -1,0 +1,5 @@
+{
+  "name": "RetailFlow Analytics",
+  "description": "A modern retail analytics dashboard with in-browser demand forecasting, inventory optimization, and Supabase integration.",
+  "requestFramePermissions": []
+}
